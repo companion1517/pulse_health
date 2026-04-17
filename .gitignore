@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node (in case anyone adds tooling later)
+node_modules/
+
+# Android build output
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/app/src/main/assets/web/
+*.iml
+*.keystore
+!debug.keystore
+
+# GitHub Pages artifact
+_site/

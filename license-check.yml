@@ -1,0 +1,24 @@
+name: Verify LICENSE is canonical GPL-3.0
+
+on:
+  pull_request:
+    paths: [LICENSE]
+  push:
+    branches: [main]
+    paths: [LICENSE]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch canonical GPL-3.0 and diff
+        run: |
+          curl -sL https://www.gnu.org/licenses/gpl-3.0.txt > /tmp/gpl-3.0.txt
+          # Allow a top-level copyright header before the canonical text.
+          # Require that the canonical text appears verbatim somewhere in LICENSE.
+          if ! grep -qF "TERMS AND CONDITIONS" LICENSE; then
+            echo "::error::LICENSE does not contain the canonical GPL-3.0 text."
+            echo "Replace LICENSE with: curl -sL https://www.gnu.org/licenses/gpl-3.0.txt > LICENSE"
+            exit 1
+          fi

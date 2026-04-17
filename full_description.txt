@@ -1,0 +1,17 @@
+Pulse Health is a unified, private, offline-first health tracker.
+
+FEATURES
+• Weight log with goal tracking, trend chart, and BMI
+• Fasting timer with 16:8, 18:6, OMAD and custom windows
+• Heart rate — manual entry, or automatic measurement using the rear camera and flashlight (photoplethysmography)
+• Workout log with type, duration, intensity, and notes
+• JSON export / import — take your data anywhere
+
+PRIVACY
+• No accounts, no ads, no trackers, no analytics
+• Works fully offline — no network permission required
+• All data stays on your device in the app's private storage
+• Camera and flashlight are used only during an active heart rate measurement; frames are never stored
+
+OPEN SOURCE
+Released under the GNU General Public License v3 (or later). Source code and issue tracker: https://github.com/companion1517/pulse_health

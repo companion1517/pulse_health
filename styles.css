@@ -1,0 +1,231 @@
+/* Pulse — Unified Health Tracker
+   Dark-first athletic palette + light theme */
+
+:root, [data-theme="dark"] {
+  /* Deep, slightly-blue near-black — calmer than pure black */
+  --bg-0: #0b0d10;
+  --bg-1: #121418;
+  --bg-2: #181b20;
+  --bg-3: #1f232a;
+  --bg-4: #262b33;
+  --line: #2a2f38;
+  --line-soft: #20242c;
+
+  /* Text */
+  --fg-0: #f2f4f7;
+  --fg-1: #c6cbd3;
+  --fg-2: #8b92a0;
+  --fg-3: #5b6270;
+
+  /* Accents — shared chroma, varied hue. Electric, not candy. */
+  --accent-lime: oklch(0.86 0.19 125);
+  --accent-teal: oklch(0.78 0.14 200);
+  --accent-rose: oklch(0.72 0.18 18);
+  --accent-amber:oklch(0.82 0.15 75);
+  --accent-violet:oklch(0.75 0.15 290);
+
+  --accent-on-primary: #0b0d10;
+  --danger: oklch(0.65 0.2 25);
+  --ok: oklch(0.78 0.18 150);
+
+  --phone-frame: linear-gradient(180deg, #2a2e35 0%, #15171b 100%);
+  --canvas-bg-color: #060709;
+  --canvas-radial-1: #10151b;
+  --canvas-radial-2: #0f1418;
+}
+
+[data-theme="light"] {
+  /* Warm, slightly off-white paper tones */
+  --bg-0: #fafaf7;
+  --bg-1: #f4f4f0;
+  --bg-2: #ffffff;
+  --bg-3: #f0f0ec;
+  --bg-4: #e6e6e1;
+  --line: #d8d8d2;
+  --line-soft: #ececE6;
+
+  --fg-0: #17181b;
+  --fg-1: #3d4046;
+  --fg-2: #6b6f78;
+  --fg-3: #9a9ea8;
+
+  /* Accents retuned: slightly darker for contrast on light bg */
+  --accent-lime: oklch(0.62 0.17 135);
+  --accent-teal: oklch(0.58 0.12 200);
+  --accent-rose: oklch(0.58 0.18 18);
+  --accent-amber:oklch(0.65 0.15 65);
+  --accent-violet:oklch(0.55 0.15 290);
+
+  --accent-on-primary: #ffffff;
+  --danger: oklch(0.55 0.2 25);
+  --ok: oklch(0.58 0.18 150);
+
+  --phone-frame: linear-gradient(180deg, #c9c9c2 0%, #a8a8a1 100%);
+  --canvas-bg-color: #eceae3;
+  --canvas-radial-1: #f4f2eb;
+  --canvas-radial-2: #f0ede5;
+}
+
+:root {
+  /* Type — theme-independent */
+  --font-sans: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-num: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+
+  /* Shape */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--canvas-bg-color);
+  color: var(--fg-0);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.01em;
+}
+
+/* Page background for canvas */
+.canvas-bg {
+  background:
+    radial-gradient(1200px 800px at 20% 10%, var(--canvas-radial-1) 0%, transparent 60%),
+    radial-gradient(900px 700px at 90% 90%, var(--canvas-radial-2) 0%, transparent 50%),
+    var(--canvas-bg-color);
+  min-height: 100vh;
+  padding: 48px 24px 120px;
+}
+
+.canvas-header {
+  max-width: 1600px;
+  margin: 0 auto 32px;
+  display: flex; align-items: baseline; justify-content: space-between;
+  color: var(--fg-1);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.canvas-header h1 {
+  font-family: var(--font-sans);
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--fg-0);
+  margin: 0;
+  font-weight: 600;
+}
+.canvas-header h1 b { color: var(--accent-lime); font-weight: 600; }
+
+.frames-row {
+  max-width: 1800px;
+  margin: 0 auto;
+  display: flex;
+  gap: 56px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.frame-cell {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.frame-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.frame-label b {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: var(--fg-0);
+  text-transform: none;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+/* Scrollbar hide inside device */
+.phone-scroll::-webkit-scrollbar { width: 0; display: none; }
+.phone-scroll { scrollbar-width: none; }
+
+/* Utility text */
+.mono { font-family: var(--font-mono); }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Common phone surfaces */
+.phone-shell {
+  background: var(--bg-0);
+  color: var(--fg-0);
+  font-family: var(--font-sans);
+  height: 100%;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+
+/* Pulse ring animation for live HR */
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Subtle scanline for PPG */
+@keyframes scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Ring pulsing for active fast */
+@keyframes slow-breath {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Tweaks panel */
+.tweaks-panel {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 320px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  color: var(--fg-0);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  z-index: 9999;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.tweaks-panel h3 {
+  margin: 0 0 12px; font-size: 11px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fg-2);
+}
+.tweak-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 12px; }
+.tweak-row label { color: var(--fg-1); font-size: 13px; }
+.tweak-row select, .tweak-row input[type="checkbox"] {
+  background: var(--bg-3); color: var(--fg-0);
+  border: 1px solid var(--line); border-radius: 6px;
+  padding: 4px 8px; font-family: inherit; font-size: 12px;
+}
+.chip-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip-row button {
+  background: var(--bg-3); color: var(--fg-1);
+  border: 1px solid var(--line); border-radius: 100px;
+  padding: 4px 10px; font: inherit; font-size: 11px;
+  cursor: pointer;
+}
+.chip-row button.active {
+  background: var(--accent-lime); color: var(--accent-on-primary); border-color: transparent;
+}

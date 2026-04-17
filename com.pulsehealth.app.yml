@@ -1,0 +1,31 @@
+Categories:
+  - Health & Fitness
+License: GPL-3.0-or-later
+AuthorName: Pulse Health contributors
+WebSite: https://github.com/companion1517/pulse_health
+SourceCode: https://github.com/companion1517/pulse_health
+IssueTracker: https://github.com/companion1517/pulse_health/issues
+Changelog: https://github.com/companion1517/pulse_health/releases
+
+AutoName: Pulse Health
+
+RepoType: git
+Repo: https://github.com/companion1517/pulse_health.git
+
+Builds:
+  - versionName: 1.0.0
+    versionCode: 1
+    commit: v1.0.0
+    subdir: android/app
+    gradle:
+      - yes
+    prebuild: |
+        mkdir -p src/main/assets/web
+        rsync -av --exclude='android/' --exclude='.github/' --exclude='fastlane/' \
+              --exclude='*.md' --exclude='LICENSE' --exclude='.git/' \
+              ../../ src/main/assets/web/
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: 1.0.0
+CurrentVersionCode: 1

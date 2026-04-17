@@ -1,0 +1,83 @@
+/* app.css — styles for the real Pulse Health app (no phone frame, no canvas).
+ * Loaded on top of styles.css which provides tokens.
+ */
+
+.app-body {
+  margin: 0;
+  background: var(--bg-0);
+  color: var(--fg-0);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  /* Safe-area respecting fullscreen */
+  min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior-y: contain;
+  touch-action: manipulation;
+}
+
+.app-root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-0);
+  /* Constrain to a phone-ish column when the viewport is wider than mobile. */
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0 0 80px rgba(0,0,0,0.6);
+}
+
+.app-body-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: env(safe-area-inset-top);
+  -webkit-overflow-scrolling: touch;
+}
+
+.bottom-tabs {
+  position: sticky;
+  bottom: 0;
+  background: color-mix(in srgb, var(--bg-1) 92%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--line-soft);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+  z-index: 100;
+}
+
+.bottom-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  padding: 6px 0;
+  color: var(--fg-2);
+  font-family: inherit;
+  cursor: pointer;
+  min-height: 48px;
+}
+.bottom-tab.active { color: var(--accent-lime); }
+.tab-label {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+/* Hide scrollbars on the app body */
+.app-body-scroll::-webkit-scrollbar { display: none; }
+.app-body-scroll { scrollbar-width: none; }
+
+/* In the real app (not canvas), the phone-shell wrappers and status bars
+   shouldn't render fixed widths. Modules that use .phone-shell just need
+   full-width. */
+@media (min-width: 700px) {
+  /* Desktop: max-width centered column */
+  .app-root { max-width: 480px; margin: 0 auto; box-shadow: 0 0 0 1px var(--line-soft); }
+}
