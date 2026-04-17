@@ -1,6 +1,0 @@
-Initial release.
-
-• Weight, fasting, heart rate, and workout tracking
-• Camera-based heart rate measurement (PPG)
-• JSON export / import
-• Fully offline, no network permission
